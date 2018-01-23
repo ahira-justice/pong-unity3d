@@ -5,11 +5,12 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour {
 
     public static Bounds boardBounds;
+    public static Bounds ballBounds;
 
     private Vector3 size;
 
     private void Start(){
-        size = new Vector3(11f, 20f, 1f);
-        boardBounds = new Bounds(transform.position, size);
+        boardBounds = new Bounds(transform.position, new Vector3(11f, 20f, 1f));
+        ballBounds = new Bounds(transform.position, new Vector3(13.3f, 20f, 1f));
     }
 }
