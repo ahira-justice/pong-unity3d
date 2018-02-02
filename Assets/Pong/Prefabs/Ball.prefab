@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4243811027750654}
   - component: {fileID: 212734529657905852}
-  - component: {fileID: 58852654841006928}
+  - component: {fileID: 58450651198724988}
   - component: {fileID: 114702257159270364}
   m_Layer: 0
   m_Name: Ball
@@ -36,13 +36,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563885287482790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 8.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58852654841006928
+--- !u!58 &58450651198724988
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -51,12 +51,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.11
+  m_Radius: 0.1
 --- !u!114 &114702257159270364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41776355a892b14d93001bf022ad884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPaddleOffset: {x: 0, y: 0, z: 0}
   paddles:
   - {fileID: 0}
   - {fileID: 0}

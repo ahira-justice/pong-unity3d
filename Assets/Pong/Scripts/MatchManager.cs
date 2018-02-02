@@ -7,14 +7,18 @@ public class MatchManager : MonoBehaviour {
     public static int server;
     public static bool serve;
 
-    private void Start(){
+    public GameObject ball;
+
+    private void Awake(){
         serve = false;
-        server = 1;
+        server = 2;
     }
 
     private void Update(){
         if (Input.GetKeyDown(KeyCode.Return) && !serve){
             serve = true;
         }
+
+        
     }
 }

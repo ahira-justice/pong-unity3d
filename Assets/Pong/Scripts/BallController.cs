@@ -10,32 +10,40 @@ public enum YDir{
     DOWN, UP
 }
 
-
 public class BallController : MonoBehaviour {
 
-    [HideInInspector]
-    public Vector3 ballPaddleOffset;
+    public static XDir xDir;
+    public static YDir yDir;
+    public static float gradient;
+
     public GameObject[] paddles;
 
-    public float gradient;
-    private static XDir xDir;
-    private static YDir yDir;
+    private Vector3 ballPaddleOffset;
     private Vector3 xDisplacement;
     private Vector3 yDisplacement;
 
     private void Start(){
-        ballPaddleOffset = new Vector3(0f, 0.2f, 0f);
+        ballPaddleOffset = new Vector3(0f, 0.25f, 0f);
         xDisplacement = new Vector3(0.1f, 0f, 0f);
-        yDisplacement = new Vector3(0f, 0.1f, 0f);
+        yDisplacement = new Vector3(0f, 0.2f, 0f);
+
         gradient = 2f;
+
+        SetBall(MatchManager.server);
     }
 
     private void Update(){
-        if (!MatchManager.serve)
-            transform.position = paddles[MatchManager.server-1].transform.position - ballPaddleOffset;
+        if (!MatchManager.serve){
+            
+        }
 
-        if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y))
+        if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)) {
+            for (int i=0; i < paddles.Length; i++)
+                paddles[i].GetComponent<PadddleController>().ResetPaddle();
+
+            SetBall(MatchManager.server);
             MatchManager.serve = false;
+        }
 
         if (MatchManager.serve){
             if (xDir == XDir.LEFT && transform.position.x < BoardManager.ballBounds.min.x){
@@ -68,5 +76,18 @@ public class BallController : MonoBehaviour {
             transform.position -= (yDisplacement * Time.timeScale);
         else if (yDir == YDir.UP)
             transform.position += (yDisplacement * Time.timeScale);
+    }
+
+    private void SetBall(int server){
+        if (server == 1){
+            xDir = XDir.RIGHT;
+            yDir = YDir.DOWN;
+            transform.position = paddles[0].transform.position - ballPaddleOffset;
+        }
+        else if (server == 2){
+            xDir = XDir.LEFT;
+            yDir = YDir.UP;
+            transform.position = paddles[1].transform.position + ballPaddleOffset;
+        }
     }
 }

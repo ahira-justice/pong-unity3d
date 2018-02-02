@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.51, y: 0.15}
+  m_Size: {x: 1.51, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &114289705812762000
 MonoBehaviour:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleID: 1
-  paddleState: 0
+  paddleState: 1
   ball: {fileID: 0}
 --- !u!212 &212582363819238896
 SpriteRenderer:
