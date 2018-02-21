@@ -11,12 +11,12 @@ public enum YDir{
 }
 
 public class BallController : MonoBehaviour {
+    public GameObject[] paddles;
 
     public static XDir xDir;
     public static YDir yDir;
     public static float gradient;
-
-    public GameObject[] paddles;
+    public static AudioSource collideSound;
 
     private Vector3 ballPaddleOffset;
     private Vector3 xDisplacement;
@@ -29,14 +29,12 @@ public class BallController : MonoBehaviour {
 
         gradient = 2f;
 
+        collideSound = GetComponent<AudioSource>();
+
         SetBall(MatchManager.server);
     }
 
     private void Update(){
-        if (!MatchManager.serve){
-            
-        }
-
         if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)) {
             for (int i=0; i < paddles.Length; i++)
                 paddles[i].GetComponent<PadddleController>().ResetPaddle();
@@ -45,12 +43,18 @@ public class BallController : MonoBehaviour {
             MatchManager.serve = false;
         }
 
+        if (!MatchManager.serve){
+
+        }
+
         if (MatchManager.serve){
             if (xDir == XDir.LEFT && transform.position.x < BoardManager.ballBounds.min.x){
-                    xDir = XDir.RIGHT;
+                BoardManager.collideSound.Play();
+                xDir = XDir.RIGHT;
             }
             else if (xDir == XDir.RIGHT && transform.position.x > BoardManager.ballBounds.max.x){
-                    xDir = XDir.LEFT;
+                BoardManager.collideSound.Play();
+                xDir = XDir.LEFT;
             }
 
             MoveBall();
@@ -59,6 +63,7 @@ public class BallController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Paddle")) {
+            collideSound.Play();
             if (yDir == YDir.UP)
                 yDir = YDir.DOWN;
             else if (yDir == YDir.DOWN)
