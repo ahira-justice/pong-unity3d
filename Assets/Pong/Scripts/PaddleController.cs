@@ -6,24 +6,24 @@ public enum PaddleState{
     PLAYER, COMPUTER
 }
 
-public enum Difficulty{
-    EASY, MEDIUM, HARD
-}
-
-public class PadddleController : MonoBehaviour
-{
-
+public class PadddleController : MonoBehaviour{
     public int paddleID;
     public GameObject ball;
     public PaddleState paddleState;
 
-    public static Difficulty difficulty;
     public static Vector3[] paddlePositions = new Vector3[2];
     
     private float speed;
     private float moveHorizontal;
     private Vector3 movement;
-    private Vector3 pointToReach;
+
+    private float m;
+    private float x;
+    private float y;
+    private float x1;
+    private float y1;
+
+    private float[] pointToReach = new float[2];
 
     private void Awake() {
         paddlePositions[0] = new Vector3(-4f, 9f, 0f);
@@ -34,11 +34,11 @@ public class PadddleController : MonoBehaviour
         if (paddleState == PaddleState.PLAYER)
             speed = 0.1f;
         else if (paddleState == PaddleState.COMPUTER){
-            if (difficulty == Difficulty.EASY)
+            if (MatchManager.difficulty == Difficulty.EASY)
                 speed = 0.1f;
-            else if (difficulty == Difficulty.MEDIUM)
+            else if (MatchManager.difficulty == Difficulty.MEDIUM)
                 speed = 0.15f;
-            else if (difficulty == Difficulty.HARD)
+            else if (MatchManager.difficulty == Difficulty.HARD)
                 speed = 0.2f;
         }
     }
@@ -50,11 +50,21 @@ public class PadddleController : MonoBehaviour
                     moveHorizontal = Input.GetAxisRaw("Horizontal");
                 }
                 else if (paddleState == PaddleState.COMPUTER) {
-                    pointToReach.y = transform.position.y;
-                    pointToReach.x = ((pointToReach.y - ball.transform.position.y) / BallController.gradient) + ball.transform.position.x;
-                    if (transform.position.x < pointToReach.x)
+                    if ((BallController.xDir == XDir.LEFT && BallController.yDir == YDir.UP) || (BallController.xDir == XDir.RIGHT && BallController.yDir == YDir.DOWN))
+                        m = -BallController.gradient;
+                    else if ((BallController.xDir == XDir.RIGHT && BallController.yDir == YDir.UP) || (BallController.xDir == XDir.LEFT && BallController.yDir == YDir.DOWN))
+                        m = BallController.gradient;
+
+                    x1 = ball.transform.position.x;
+                    y1 = ball.transform.position.y;
+                    y = transform.position.y;
+                    x = (y - y1 + m * x1) / m;
+                    pointToReach[0] = x;
+                    pointToReach[1] = y;
+
+                    if (transform.position.x < pointToReach[0])
                         moveHorizontal = 1;
-                    else if (transform.position.x > pointToReach.x)
+                    else if (transform.position.x > pointToReach[0])
                         moveHorizontal = -1;
                     else
                         moveHorizontal = 0;

@@ -24,10 +24,10 @@ public class BallController : MonoBehaviour {
 
     private void Start(){
         ballPaddleOffset = new Vector3(0f, 0.25f, 0f);
-        xDisplacement = new Vector3(0.1f, 0f, 0f);
+        xDisplacement = new Vector3(0.2f, 0f, 0f);
         yDisplacement = new Vector3(0f, 0.2f, 0f);
 
-        gradient = 2f;
+        gradient = 3f;
 
         collideSound = GetComponent<AudioSource>();
 
@@ -64,6 +64,13 @@ public class BallController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Paddle")) {
             collideSound.Play();
+            PaddleState paddleState = other.gameObject.GetComponent<PadddleController>().paddleState;
+
+            if (paddleState == PaddleState.PLAYER)
+                gradient = Random.Range(3, 5);
+            else if (paddleState == PaddleState.COMPUTER)
+                gradient = Random.Range(2, 5);
+            
             if (yDir == YDir.UP)
                 yDir = YDir.DOWN;
             else if (yDir == YDir.DOWN)

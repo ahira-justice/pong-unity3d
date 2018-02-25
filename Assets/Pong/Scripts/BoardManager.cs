@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
-
     public static Bounds boardBounds;
     public static Bounds ballBounds;
     public static AudioSource collideSound;
