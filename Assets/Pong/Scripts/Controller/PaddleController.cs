@@ -6,7 +6,7 @@ public enum PaddleState{
     PLAYER, COMPUTER
 }
 
-public class PadddleController : MonoBehaviour{
+public class PaddleController : MonoBehaviour{
     public int paddleID;
     public GameObject ball;
     public PaddleState paddleState;
@@ -34,11 +34,11 @@ public class PadddleController : MonoBehaviour{
         if (paddleState == PaddleState.PLAYER)
             speed = 0.1f;
         else if (paddleState == PaddleState.COMPUTER){
-            if (MatchManager.difficulty == Difficulty.EASY)
+            if (GameControl.difficulty == Difficulty.EASY)
+                speed = 0.05f;
+            else if (GameControl.difficulty == Difficulty.MEDIUM)
                 speed = 0.1f;
-            else if (MatchManager.difficulty == Difficulty.MEDIUM)
-                speed = 0.15f;
-            else if (MatchManager.difficulty == Difficulty.HARD)
+            else if (GameControl.difficulty == Difficulty.HARD)
                 speed = 0.2f;
         }
     }

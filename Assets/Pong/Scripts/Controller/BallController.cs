@@ -35,19 +35,15 @@ public class BallController : MonoBehaviour {
     }
 
     private void Update(){
-        if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)) {
-            for (int i=0; i < paddles.Length; i++)
-                paddles[i].GetComponent<PadddleController>().ResetPaddle();
+        if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)){
+            for (int i = 0; i < paddles.Length; i++)
+                paddles[i].GetComponent<PaddleController>().ResetPaddle();
 
             SetBall(MatchManager.server);
             MatchManager.serve = false;
         }
 
-        if (!MatchManager.serve){
-
-        }
-
-        if (MatchManager.serve){
+        if (MatchManager.serve && !MatchManager.paused){
             if (xDir == XDir.LEFT && transform.position.x < BoardManager.ballBounds.min.x){
                 BoardManager.collideSound.Play();
                 xDir = XDir.RIGHT;
@@ -64,12 +60,12 @@ public class BallController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Paddle")) {
             collideSound.Play();
-            PaddleState paddleState = other.gameObject.GetComponent<PadddleController>().paddleState;
+            PaddleState paddleState = other.gameObject.GetComponent<PaddleController>().paddleState;
 
             if (paddleState == PaddleState.PLAYER)
                 gradient = Random.Range(3, 5);
             else if (paddleState == PaddleState.COMPUTER)
-                gradient = Random.Range(2, 5);
+                gradient = Random.Range(3, 5);
             
             if (yDir == YDir.UP)
                 yDir = YDir.DOWN;
