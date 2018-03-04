@@ -35,6 +35,19 @@ public class BallController : MonoBehaviour {
     }
 
     private void Update(){
+        if (GameControl.playerID == 1){
+            if (transform.position.y < BoardManager.ballBounds.min.y)
+                MatchManager.playerScore += 1;
+            else if (transform.position.y > BoardManager.ballBounds.max.y)
+                MatchManager.computerScore += 1;
+        }
+        else if (GameControl.playerID == 2){
+            if (transform.position.y < BoardManager.ballBounds.min.y)
+                MatchManager.computerScore += 1;
+            else if (transform.position.y > BoardManager.ballBounds.max.y)
+                MatchManager.playerScore += 1;
+        }
+
         if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)){
             for (int i = 0; i < paddles.Length; i++)
                 paddles[i].GetComponent<PaddleController>().ResetPaddle();
@@ -63,9 +76,16 @@ public class BallController : MonoBehaviour {
             PaddleState paddleState = other.gameObject.GetComponent<PaddleController>().paddleState;
 
             if (paddleState == PaddleState.PLAYER)
-                gradient = Random.Range(3, 5);
+                gradient = Random.Range(3, 6);
             else if (paddleState == PaddleState.COMPUTER)
-                gradient = Random.Range(3, 5);
+            {
+                if(GameControl.difficulty == Difficulty.EASY)
+                    gradient = Random.Range(4, 6);
+                else if (GameControl.difficulty == Difficulty.MEDIUM)
+                    gradient = Random.Range(3, 6);
+                else if (GameControl.difficulty == Difficulty.HARD)
+                    gradient = Random.Range(2, 6);
+            }
             
             if (yDir == YDir.UP)
                 yDir = YDir.DOWN;

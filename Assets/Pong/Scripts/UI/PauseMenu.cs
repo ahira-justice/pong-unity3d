@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void Retry(){
+        MatchManager.playerScore = 0;
+        MatchManager.computerScore = 0;
         SceneManager.LoadScene("Main");
     }
 

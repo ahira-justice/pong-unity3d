@@ -8,12 +8,16 @@ public class MatchManager : MonoBehaviour {
     public static bool paused;
     public static bool serve;
     public static int server;
+    public static int playerScore;
+    public static int computerScore;
 
     public GameObject paddle1;
     public GameObject paddle2;
     public GameObject ball;
     public Text Score1;
     public Text Score2;
+
+    private HUD hud;
 
     private void Awake(){
         paused = false;
@@ -24,6 +28,8 @@ public class MatchManager : MonoBehaviour {
     private void Start(){
         PaddleController paddleController1 = paddle1.GetComponent<PaddleController>();
         PaddleController paddleController2 = paddle2.GetComponent<PaddleController>();
+
+        hud = GameObject.Find("HUD").GetComponent<HUD>();
 
         if (GameControl.playerID == 1){
             paddleController1.paddleState = PaddleState.PLAYER;
@@ -36,9 +42,23 @@ public class MatchManager : MonoBehaviour {
     }
 
     private void Update(){
+        if (Input.GetKeyDown(KeyCode.Escape))
+            hud.Pause();
+
         if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused){
             BallController.collideSound.Play();
             serve = true;
-        }    
+        }
+
+        if (serve == false){
+            if (GameControl.playerID == 1){
+                Score1.text = "" + playerScore;
+                Score2.text = "" + computerScore;
+            }
+            else if (GameControl.playerID == 2){
+                Score1.text = "" + computerScore;
+                Score2.text = "" + playerScore;
+            }
+        }
     }
 }
