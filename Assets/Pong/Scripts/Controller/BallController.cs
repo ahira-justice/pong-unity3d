@@ -18,6 +18,7 @@ public class BallController : MonoBehaviour {
     public static float gradient;
     public static AudioSource collideSound;
 
+    private Vector2 contact;
     private Vector3 ballPaddleOffset;
     private Vector3 xDisplacement;
     private Vector3 yDisplacement;
@@ -52,6 +53,7 @@ public class BallController : MonoBehaviour {
             for (int i = 0; i < paddles.Length; i++)
                 paddles[i].GetComponent<PaddleController>().ResetPaddle();
 
+            gradient = 3f;
             SetBall(MatchManager.server);
             MatchManager.serve = false;
         }
@@ -70,8 +72,8 @@ public class BallController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.CompareTag("Paddle")) {
+    private void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.CompareTag("Paddle1") || other.gameObject.CompareTag("Paddle2")) {
             collideSound.Play();
             PaddleState paddleState = other.gameObject.GetComponent<PaddleController>().paddleState;
 
@@ -86,7 +88,24 @@ public class BallController : MonoBehaviour {
                 else if (GameControl.difficulty == Difficulty.HARD)
                     gradient = Random.Range(2, 6);
             }
+
             
+            contact = other.contacts[0].point;
+
+            if (other.gameObject.CompareTag("Paddle1")){
+                if ((contact.x - paddles[0].transform.position.x) < 0f)
+                    xDir = XDir.LEFT;
+                else if ((contact.x - paddles[0].transform.position.x) > 0f)
+                    xDir = XDir.RIGHT;
+            }
+
+            else if (other.gameObject.CompareTag("Paddle2")){
+                if ((contact.x - paddles[1].transform.position.x) < 0f)
+                    xDir = XDir.LEFT;
+                else if ((contact.x - paddles[1].transform.position.x) > 0f)
+                    xDir = XDir.RIGHT;
+            }
+
             if (yDir == YDir.UP)
                 yDir = YDir.DOWN;
             else if (yDir == YDir.DOWN)

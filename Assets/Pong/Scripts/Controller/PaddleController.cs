@@ -30,26 +30,15 @@ public class PaddleController : MonoBehaviour{
         paddlePositions[1] = new Vector3(4f, -9f, 0f);
     }
 
-    private void Start() {
-        if (paddleState == PaddleState.PLAYER)
-            speed = 0.1f;
-        else if (paddleState == PaddleState.COMPUTER){
-            if (GameControl.difficulty == Difficulty.EASY)
-                speed = 0.05f;
-            else if (GameControl.difficulty == Difficulty.MEDIUM)
-                speed = 0.1f;
-            else if (GameControl.difficulty == Difficulty.HARD)
-                speed = 0.2f;
-        }
-    }
-
     private void Update() {
         if (MatchManager.serve) {
             if (BoardManager.boardBounds.Contains(transform.position)) {
                 if (paddleState == PaddleState.PLAYER) {
-                    moveHorizontal = Input.GetAxisRaw("Horizontal");
+                    speed = GameControl.playerSpeed;
+                    moveHorizontal = Input.GetAxisRaw("Horizontal");                    
                 }
                 else if (paddleState == PaddleState.COMPUTER) {
+                    speed = GameControl.computerSpeed;
                     if ((BallController.xDir == XDir.LEFT && BallController.yDir == YDir.UP) || (BallController.xDir == XDir.RIGHT && BallController.yDir == YDir.DOWN))
                         m = -BallController.gradient;
                     else if ((BallController.xDir == XDir.RIGHT && BallController.yDir == YDir.UP) || (BallController.xDir == XDir.LEFT && BallController.yDir == YDir.DOWN))

@@ -20,11 +20,25 @@ class GameData {
 public class GameControl : MonoBehaviour {
     public static GameControl control;
 
+    public static float playerSpeed;
+    public static float computerSpeed;
+
     public static int playerID;
     public static Difficulty difficulty;
     
     void OnEnable(){
         Load("gamedata.dat");
+
+
+        playerSpeed = 0.1f;
+
+        if (GameControl.difficulty == Difficulty.EASY)
+            computerSpeed = 0.05f;
+        else if (GameControl.difficulty == Difficulty.MEDIUM)
+            computerSpeed = 0.1f;
+        else if (GameControl.difficulty == Difficulty.HARD)
+            computerSpeed = 0.15f;
+       
     }
 
     void OnDisable(){

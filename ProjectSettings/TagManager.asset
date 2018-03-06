@@ -4,13 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Paddle
   - Top
   - Bottom
   - Easy
   - Medium
   - Hard
   - OptionsMenu
+  - Paddle1
+  - Paddle2
   layers:
   - Default
   - TransparentFX

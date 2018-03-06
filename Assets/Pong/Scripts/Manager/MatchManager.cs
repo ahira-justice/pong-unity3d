@@ -11,6 +11,8 @@ public class MatchManager : MonoBehaviour {
     public static int playerScore;
     public static int computerScore;
 
+    public GameObject gameOver;
+
     public GameObject paddle1;
     public GameObject paddle2;
     public GameObject ball;
@@ -18,6 +20,8 @@ public class MatchManager : MonoBehaviour {
     public Text Score2;
 
     private HUD hud;
+    private bool playerWins;
+    private bool computerWins;
 
     private void Awake(){
         paused = false;
@@ -48,6 +52,20 @@ public class MatchManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused){
             BallController.collideSound.Play();
             serve = true;
+        }
+
+        if (playerScore >= 11)
+            playerWins = true;
+        else if (computerScore >= 11)
+            computerWins = true;
+
+        if (playerWins || computerWins){
+            gameOver.transform.Find("Panel").gameObject.SetActive(true);
+
+            if (playerWins)
+                gameOver.transform.Find("Panel").transform.Find("Info").GetComponent<Text>().text = "PLAYER WINS";
+            else if (computerWins)
+                gameOver.transform.Find("Panel").transform.Find("Info").GetComponent<Text>().text = "COMPUTER WINS";
         }
 
         if (serve == false){

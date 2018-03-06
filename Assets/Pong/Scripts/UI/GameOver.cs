@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
-
-    public GameObject pauseMenu;
-
-    public void Resume(){
-        MatchManager.paused = false;
-        pauseMenu.transform.Find("Panel").gameObject.SetActive(false);
-    }
+public class GameOver : MonoBehaviour {
+    public GameObject gameOver;
 
     public void Retry(){
         MatchManager.playerScore = 0;

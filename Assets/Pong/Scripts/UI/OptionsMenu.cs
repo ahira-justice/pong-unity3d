@@ -31,12 +31,18 @@ public class OptionsMenu : MonoBehaviour {
     }
 
     public void SetDifficulty(int value){
-        if (value == 1)
+        if (value == 1){
+            GameControl.computerSpeed = 0.05f;
             GameControl.difficulty = Difficulty.EASY;
-        else if (value == 2)
+        }
+        else if (value == 2){
+            GameControl.computerSpeed = 0.1f;
             GameControl.difficulty = Difficulty.MEDIUM;
-        else if (value == 3)
+        }
+        else if (value == 3){
+            GameControl.computerSpeed = 0.15f;
             GameControl.difficulty = Difficulty.HARD;
+        }
     }
 
     public void Back(){
