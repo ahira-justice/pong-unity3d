@@ -18,3 +18,7 @@ Loading C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\UnityEn
 Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
 Loading C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.837 seconds
+<RI> Initializing input.
+<RI> Input initialized.
