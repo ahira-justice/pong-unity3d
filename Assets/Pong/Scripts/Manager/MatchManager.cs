@@ -12,16 +12,19 @@ public class MatchManager : MonoBehaviour {
     public static int computerScore;
 
     public GameObject gameOver;
-
+    public GameObject HUD;
+    public GameObject ball;
     public GameObject paddle1;
     public GameObject paddle2;
-    public GameObject ball;
     public Text Score1;
     public Text Score2;
 
-    private HUD hud;
     private bool playerWins;
     private bool computerWins;
+    private HUD hud;
+    private BallController ballController;
+    private PaddleController paddleController1;
+    private PaddleController paddleController2;
 
     private void Awake(){
         paused = false;
@@ -30,10 +33,10 @@ public class MatchManager : MonoBehaviour {
     }
 
     private void Start(){
-        PaddleController paddleController1 = paddle1.GetComponent<PaddleController>();
-        PaddleController paddleController2 = paddle2.GetComponent<PaddleController>();
-
-        hud = GameObject.Find("HUD").GetComponent<HUD>();
+        hud = HUD.GetComponent<HUD>();
+        ballController = ball.GetComponent<BallController>();
+        paddleController1 = paddle1.GetComponent<PaddleController>();
+        paddleController2 = paddle2.GetComponent<PaddleController>();
 
         if (GameControl.playerID == 1){
             paddleController1.paddleState = PaddleState.PLAYER;
@@ -52,7 +55,7 @@ public class MatchManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused){
             BallController.collideSound.Play();
             serve = true;
-        }
+        }                                               
 
         if (playerScore >= 11)
             playerWins = true;
@@ -69,6 +72,8 @@ public class MatchManager : MonoBehaviour {
         }
 
         if (serve == false){
+            ballController.SetBall(server);
+
             if (GameControl.playerID == 1){
                 Score1.text = "" + playerScore;
                 Score2.text = "" + computerScore;
@@ -76,6 +81,17 @@ public class MatchManager : MonoBehaviour {
             else if (GameControl.playerID == 2){
                 Score1.text = "" + computerScore;
                 Score2.text = "" + playerScore;
+            }
+
+            if (playerScore + computerScore != 0 && (playerScore + computerScore) % 5 == 0){
+                if (server == 1){
+                    server = 2;
+                    ballController.SetBall(server);
+                }
+                else if (server == 2){
+                    server = 1;
+                    ballController.SetBall(server);
+                }
             }
         }
     }

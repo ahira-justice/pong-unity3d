@@ -51,9 +51,9 @@ public class PaddleController : MonoBehaviour{
                     pointToReach[0] = x;
                     pointToReach[1] = y;
 
-                    if (transform.position.x < pointToReach[0])
+                    if (pointToReach[0] - transform.position.x > 0.1f)
                         moveHorizontal = 1;
-                    else if (transform.position.x > pointToReach[0])
+                    else if (pointToReach[0] - transform.position.x < -0.1f)
                         moveHorizontal = -1;
                     else
                         moveHorizontal = 0;
@@ -62,13 +62,13 @@ public class PaddleController : MonoBehaviour{
                 movement = movement * Time.timeScale * speed;
                 transform.Translate(movement);
             }
-            else if (!BoardManager.boardBounds.Contains(transform.position)) {
+            else if (!BoardManager.boardBounds.Contains(transform.position)){
                 transform.Translate(-(movement * 0.5f));
             }
         }
     }
 
-    public void ResetPaddle() {
+    public void ResetPaddle(){
         transform.position = paddlePositions[paddleID-1];
     }
 }

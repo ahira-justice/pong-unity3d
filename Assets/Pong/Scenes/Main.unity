@@ -1606,8 +1606,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1358876195}
   - component: {fileID: 1358876194}
-  - component: {fileID: 1358876196}
   - component: {fileID: 1358876197}
+  - component: {fileID: 1358876196}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -2634,9 +2634,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: {fileID: 140286661}
+  HUD: {fileID: 1797624576}
+  ball: {fileID: 1889182121}
   paddle1: {fileID: 1349418335}
   paddle2: {fileID: 423862447}
-  ball: {fileID: 1889182121}
   Score1: {fileID: 207617548}
   Score2: {fileID: 964325633}
 --- !u!4 &1837152405

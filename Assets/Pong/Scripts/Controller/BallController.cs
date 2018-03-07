@@ -54,7 +54,6 @@ public class BallController : MonoBehaviour {
                 paddles[i].GetComponent<PaddleController>().ResetPaddle();
 
             gradient = 3f;
-            SetBall(MatchManager.server);
             MatchManager.serve = false;
         }
 
@@ -125,7 +124,7 @@ public class BallController : MonoBehaviour {
             transform.position += (yDisplacement * Time.timeScale);
     }
 
-    private void SetBall(int server){
+    public void SetBall(int server){
         if (server == 1){
             xDir = XDir.RIGHT;
             yDir = YDir.DOWN;

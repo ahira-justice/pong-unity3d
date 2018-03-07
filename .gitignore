@@ -5,4 +5,5 @@
 !/.gitignore
 !/Assets
 !/ProjectSettings
+!/Builds
 !/UnityPackageManager
