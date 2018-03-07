@@ -53,7 +53,15 @@ public class BallController : MonoBehaviour {
             for (int i = 0; i < paddles.Length; i++)
                 paddles[i].GetComponent<PaddleController>().ResetPaddle();
 
+            if (MatchManager.playerScore + MatchManager.computerScore != 0 && (MatchManager.playerScore + MatchManager.computerScore) % 5 == 0){
+                if (MatchManager.server == 1)
+                    MatchManager.server = 2;
+                else if (MatchManager.server == 2)
+                    MatchManager.server = 1;
+            }
+
             gradient = 3f;
+            SetBall(MatchManager.server);
             MatchManager.serve = false;
         }
 

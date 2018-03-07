@@ -13,7 +13,6 @@ public class MatchManager : MonoBehaviour {
 
     public GameObject gameOver;
     public GameObject HUD;
-    public GameObject ball;
     public GameObject paddle1;
     public GameObject paddle2;
     public Text Score1;
@@ -22,7 +21,6 @@ public class MatchManager : MonoBehaviour {
     private bool playerWins;
     private bool computerWins;
     private HUD hud;
-    private BallController ballController;
     private PaddleController paddleController1;
     private PaddleController paddleController2;
 
@@ -34,7 +32,7 @@ public class MatchManager : MonoBehaviour {
 
     private void Start(){
         hud = HUD.GetComponent<HUD>();
-        ballController = ball.GetComponent<BallController>();
+
         paddleController1 = paddle1.GetComponent<PaddleController>();
         paddleController2 = paddle2.GetComponent<PaddleController>();
 
@@ -72,8 +70,6 @@ public class MatchManager : MonoBehaviour {
         }
 
         if (serve == false){
-            ballController.SetBall(server);
-
             if (GameControl.playerID == 1){
                 Score1.text = "" + playerScore;
                 Score2.text = "" + computerScore;
@@ -81,17 +77,6 @@ public class MatchManager : MonoBehaviour {
             else if (GameControl.playerID == 2){
                 Score1.text = "" + computerScore;
                 Score2.text = "" + playerScore;
-            }
-
-            if (playerScore + computerScore != 0 && (playerScore + computerScore) % 5 == 0){
-                if (server == 1){
-                    server = 2;
-                    ballController.SetBall(server);
-                }
-                else if (server == 2){
-                    server = 1;
-                    ballController.SetBall(server);
-                }
             }
         }
     }
