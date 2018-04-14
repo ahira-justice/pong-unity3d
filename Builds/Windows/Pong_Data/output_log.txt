@@ -19,6 +19,17 @@ Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Mana
 Loading C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\System.dll (this message is harmless)
 Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Windows\Pong_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.837 seconds
+- Completed reload, in  0.796 seconds
 <RI> Initializing input.
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 118.247314 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 30.491955 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 473.
+Total: 11.259499 ms (FindLiveObjects: 0.148758 ms CreateObjectMapping: 0.030264 ms MarkObjects: 11.036874 ms  DeleteObjects: 0.041036 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 480 -> priority: 1 
+  Thread -> id: 2a94 -> priority: 1 

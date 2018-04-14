@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HUD : MonoBehaviour {
 
@@ -9,5 +7,13 @@ public class HUD : MonoBehaviour {
     public void Pause(){
         MatchManager.paused = true;
         pauseMenu.transform.Find("Panel").gameObject.SetActive(true);
+    }
+
+    public void ShowServerChangeText(){
+        transform.Find("Panel").transform.Find("ServerChange").gameObject.SetActive(true);
+    }
+
+    public void HideServerChangeText(){
+        transform.Find("Panel").transform.Find("ServerChange").gameObject.SetActive(false);
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum XDir{
     LEFT, RIGHT
@@ -49,15 +47,14 @@ public class BallController : MonoBehaviour {
                 MatchManager.playerScore += 1;
         }
 
-        if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)){
+        if ((transform.position.y < BoardManager.ballBounds.min.y) || (transform.position.y > BoardManager.ballBounds.max.y)) {
             for (int i = 0; i < paddles.Length; i++)
                 paddles[i].GetComponent<PaddleController>().ResetPaddle();
 
             if (MatchManager.playerScore + MatchManager.computerScore != 0 && (MatchManager.playerScore + MatchManager.computerScore) % 5 == 0){
-                if (MatchManager.server == 1)
-                    MatchManager.server = 2;
-                else if (MatchManager.server == 2)
-                    MatchManager.server = 1;
+                MatchManager.ChangeServer();
+                MatchManager.displayText = true;
+                MatchManager.changingServer = true;
             }
 
             gradient = 3f;
@@ -74,7 +71,6 @@ public class BallController : MonoBehaviour {
                 BoardManager.collideSound.Play();
                 xDir = XDir.LEFT;
             }
-
             MoveBall();
         }
     }

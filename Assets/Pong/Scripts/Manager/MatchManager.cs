@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MatchManager : MonoBehaviour {
     public static bool paused;
+    public static bool displayText;
+    public static bool changingServer;
     public static bool serve;
     public static int server;
     public static int playerScore;
@@ -18,6 +17,7 @@ public class MatchManager : MonoBehaviour {
     public Text Score1;
     public Text Score2;
 
+    private float startTime;
     private bool playerWins;
     private bool computerWins;
     private HUD hud;
@@ -26,6 +26,8 @@ public class MatchManager : MonoBehaviour {
 
     private void Awake(){
         paused = false;
+        displayText = false;
+        changingServer = false;
         serve = false;
         server = Random.Range(1, 3);
     }
@@ -50,7 +52,7 @@ public class MatchManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
             hud.Pause();
 
-        if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused){
+        if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused && !changingServer){
             BallController.collideSound.Play();
             serve = true;
         }                                               
@@ -69,7 +71,7 @@ public class MatchManager : MonoBehaviour {
                 gameOver.transform.Find("Panel").transform.Find("Info").GetComponent<Text>().text = "COMPUTER WINS";
         }
 
-        if (serve == false){
+        if (!serve){
             if (GameControl.playerID == 1){
                 Score1.text = "" + playerScore;
                 Score2.text = "" + computerScore;
@@ -79,5 +81,23 @@ public class MatchManager : MonoBehaviour {
                 Score2.text = "" + playerScore;
             }
         }
+
+        if (displayText){
+            startTime = Time.time;
+            hud.ShowServerChangeText();
+            displayText = false;
+        }
+
+        if (changingServer && (Time.time - startTime) >= 2f){
+            hud.HideServerChangeText();
+            changingServer = false;
+        }
+    }
+
+    public static void ChangeServer(){
+        if (server == 1)
+            server = 2;
+        else if (server == 2)
+            server = 1;
     }
 }

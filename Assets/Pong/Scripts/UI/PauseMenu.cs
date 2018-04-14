@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
@@ -12,7 +10,7 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.transform.Find("Panel").gameObject.SetActive(false);
     }
 
-    public void Retry(){
+    public void Restart(){
         MatchManager.playerScore = 0;
         MatchManager.computerScore = 0;
         SceneManager.LoadScene("Main");
