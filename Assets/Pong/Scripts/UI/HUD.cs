@@ -16,4 +16,8 @@ public class HUD : MonoBehaviour {
     public void HideServerChangeText(){
         transform.Find("Panel").transform.Find("ServerChange").gameObject.SetActive(false);
     }
+
+    public void HidePlayInfoText(){
+        transform.Find("Panel").transform.Find("PlayInfo").gameObject.SetActive(false);
+    }
 }

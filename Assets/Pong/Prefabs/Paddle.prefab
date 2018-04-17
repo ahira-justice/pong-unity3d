@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114569971876341392}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Paddle
+  m_TagString: Paddle1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.51, y: 0.25}
+  m_Size: {x: 1.51, y: 0.4}
   m_EdgeRadius: 0
 --- !u!114 &114569971876341392
 MonoBehaviour:

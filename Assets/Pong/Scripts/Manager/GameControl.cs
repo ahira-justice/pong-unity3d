@@ -25,15 +25,14 @@ public class GameControl : MonoBehaviour {
     void OnEnable(){
         Load("gamedata.dat");
 
-
         playerSpeed = 0.1f;
 
         if (GameControl.difficulty == Difficulty.EASY)
-            computerSpeed = 0.05f;
+            computerSpeed = 0.07f;
         else if (GameControl.difficulty == Difficulty.MEDIUM)
             computerSpeed = 0.1f;
         else if (GameControl.difficulty == Difficulty.HARD)
-            computerSpeed = 0.15f;
+            computerSpeed = 0.13f;
        
     }
 

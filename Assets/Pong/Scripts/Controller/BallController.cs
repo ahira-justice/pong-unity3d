@@ -22,7 +22,7 @@ public class BallController : MonoBehaviour {
     private Vector3 yDisplacement;
 
     private void Start(){
-        ballPaddleOffset = new Vector3(0f, 0.25f, 0f);
+        ballPaddleOffset = new Vector3(0f, 0.3f, 0f);
         xDisplacement = new Vector3(0.2f, 0f, 0f);
         yDisplacement = new Vector3(0f, 0.2f, 0f);
 

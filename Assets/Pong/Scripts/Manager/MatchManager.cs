@@ -5,6 +5,7 @@ public class MatchManager : MonoBehaviour {
     public static bool paused;
     public static bool displayText;
     public static bool changingServer;
+    public static bool computerServe;
     public static bool serve;
     public static int server;
     public static int playerScore;
@@ -17,7 +18,8 @@ public class MatchManager : MonoBehaviour {
     public Text Score1;
     public Text Score2;
 
-    private float startTime;
+    private float displayStartTime;
+    private float serveStartTime;
     private bool playerWins;
     private bool computerWins;
     private HUD hud;
@@ -28,8 +30,9 @@ public class MatchManager : MonoBehaviour {
         paused = false;
         displayText = false;
         changingServer = false;
+        computerServe = false;
         serve = false;
-        server = Random.Range(1, 3);
+        server = GameControl.playerID;
     }
 
     private void Start(){
@@ -52,10 +55,24 @@ public class MatchManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
             hud.Pause();
 
-        if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused && !changingServer){
-            BallController.collideSound.Play();
-            serve = true;
-        }                                               
+        if (server == GameControl.playerID){
+            if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused && !changingServer && !(playerWins || computerWins)){
+                hud.HidePlayInfoText();
+                BallController.collideSound.Play();
+                serve = true;
+            }
+        }
+        else if(server != GameControl.playerID){
+            if (!computerServe && !serve && !paused && !changingServer && !(playerWins || computerWins)){
+                serveStartTime = Time.time;
+                computerServe = true;
+            }
+            if (!serve && computerServe && (Time.time - serveStartTime) >= 1.5f){
+                BallController.collideSound.Play();
+                serve = true;
+                computerServe = false;
+            }
+        }
 
         if (playerScore >= 11)
             playerWins = true;
@@ -83,15 +100,19 @@ public class MatchManager : MonoBehaviour {
         }
 
         if (displayText){
-            startTime = Time.time;
+            displayStartTime = Time.time;
             hud.ShowServerChangeText();
             displayText = false;
         }
 
-        if (changingServer && (Time.time - startTime) >= 2f){
+        if (changingServer && (Time.time - displayStartTime) >= 2f){
             hud.HideServerChangeText();
             changingServer = false;
         }
+    }
+
+    private void OnEnable(){
+        
     }
 
     public static void ChangeServer(){
