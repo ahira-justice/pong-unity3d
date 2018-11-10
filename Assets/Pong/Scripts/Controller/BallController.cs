@@ -60,6 +60,7 @@ public class BallController : MonoBehaviour {
             gradient = 3f;
             SetBall(MatchManager.server);
             MatchManager.serve = false;
+            Controller.touch = false;
         }
 
         if (MatchManager.serve && !MatchManager.paused){

@@ -56,7 +56,7 @@ public class MatchManager : MonoBehaviour {
             hud.Pause();
 
         if (server == GameControl.playerID){
-            if (Input.GetKeyDown(KeyCode.Return) && !serve && !paused && !changingServer && !(playerWins || computerWins)){
+            if (Controller.touch && !serve && !paused && !changingServer && !(playerWins || computerWins)){
                 hud.HidePlayInfoText();
                 BallController.collideSound.Play();
                 serve = true;
