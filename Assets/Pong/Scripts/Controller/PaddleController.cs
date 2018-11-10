@@ -9,10 +9,10 @@ public class PaddleController : MonoBehaviour{
     public GameObject ball;
     public PaddleState paddleState;
 
+    public static float moveHorizontal;
     public static Vector3[] paddlePositions = new Vector3[2];
     
     private float speed;
-    private float moveHorizontal;
     private Vector3 movement;
 
     private float m;
@@ -33,7 +33,7 @@ public class PaddleController : MonoBehaviour{
             if (BoardManager.boardBounds.Contains(transform.position)) {
                 if (paddleState == PaddleState.PLAYER) {
                     speed = GameControl.playerSpeed;
-                    moveHorizontal = Input.GetAxisRaw("Horizontal");                    
+                    moveHorizontal = Controller.input;
                 }
                 else if (paddleState == PaddleState.COMPUTER) {
                     speed = GameControl.computerSpeed;
