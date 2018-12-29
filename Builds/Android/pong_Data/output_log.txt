@@ -1,0 +1,53 @@
+Mono path[0] = 'C:/ahiradev/unity/personal/Pong/Builds/Android/pong_Data/Managed'
+Mono config path = 'C:/ahiradev/unity/personal/Pong/Builds/Android/pong_Data/Mono/etc'
+PlayerConnection initialized from C:/ahiradev/unity/personal/Pong/Builds/Android/pong_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55111
+Multi-casting "[IP] 0.0.0.0 [Port] 55111 [Flags] 2 [Guid] 2715339739 [EditorId] 2732002749 [Version] 1048832 [Id] WindowsPlayer(Ahira) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55111]
+PlayerConnection already initialized - listening to [0.0.0.0:55111]
+Player data archive not found at `C:/ahiradev/unity/personal/Pong/Builds/Android/pong_Data/data.unity3d`, using local filesystem
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon HD 8400 / R3 Series (ID=0x9830)
+    Vendor:   ATI
+    VRAM:     1381 MB
+    Driver:   22.19.677.257
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\ahiradev\unity\personal\Pong\Builds\Android\pong_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.085 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.147009 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 18.986698 ms
+System memory in use before: 17.4 MB.
+System memory in use after: 17.4 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 484.
+Total: 0.853052 ms (FindLiveObjects: 0.096436 ms CreateObjectMapping: 0.038471 ms MarkObjects: 0.669925 ms  DeleteObjects: 0.044627 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.510154 ms
+System memory in use before: 17.4 MB.
+System memory in use after: 17.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 458.
+Total: 1.180320 ms (FindLiveObjects: 0.112851 ms CreateObjectMapping: 0.046679 ms MarkObjects: 0.805347 ms  DeleteObjects: 0.211339 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2a88 -> priority: 1 
+  Thread -> id: 31b4 -> priority: 1 
